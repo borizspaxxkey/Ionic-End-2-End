@@ -2,13 +2,17 @@
     <ion-toolbar color='secondary'>
         <img class="logo" src="assets/img/wired-brain-coffee-logo.png">
     </ion-toolbar>
+
+    <ion-toolbar color='secondary'>
+        <button ion-button clear [navPush]='logPage'>Sign In</button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
     <ion-list *ngFor='let menu of menuData' no-padding>
         <ion-card>
-          <img [src]="menu.pic" alt="">
-          <div class="card-title" [navPush]=menu.pushPage>{{menu.title}}</div>
+            <img [src]="menu.pic" alt="">
+            <div [navPush]="menu.pushPage" class="card-title">{{menu.title}}</div>
         </ion-card>
     </ion-list>
 </ion-content>
