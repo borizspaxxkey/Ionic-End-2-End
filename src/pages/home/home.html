@@ -18,9 +18,9 @@
 
 <ion-content padding>
     <ion-list *ngFor='let menu of menuData' no-padding>
-        <ion-card>
+        <ion-card (click)='myPagePush(menu.pushPage)'>
             <img [src]="menu.pic" alt="">
-            <div [navPush]="menu.pushPage" class="card-title">{{menu.title}}</div>
+            <div class="card-title">{{menu.title}}</div>
         </ion-card>
     </ion-list>
 </ion-content>

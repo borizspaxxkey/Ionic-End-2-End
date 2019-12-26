@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
 
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
-        this.loggedIn = user.email;
+        this.loggedIn = this.userService.user = user.email;
       }
     });
 
@@ -41,5 +41,14 @@ export class HomePage implements OnInit {
   signOff() {
     this.userService.logOut();
     this.loggedIn = '';
+  }
+
+  myPagePush(page) {
+    this.navCtrl.push(page)
+      .then(result => {
+        if (!result) {
+          this.userService.displayAlert('Sorry', 'You must first register an account');
+        }
+      });
   }
 }
