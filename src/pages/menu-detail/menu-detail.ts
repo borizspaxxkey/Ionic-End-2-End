@@ -18,8 +18,8 @@ export class MenuDetailPage implements OnInit {
     large: 0,
     size: '',
     price: 0,
-    milk: 'none',
-    whip: 'none'
+    milk: 'no',
+    whip: 'no'
   };
 
   constructor(public navCtrl: NavController,
@@ -31,7 +31,7 @@ export class MenuDetailPage implements OnInit {
     let id = this.navParams.get('id');
     this.menuService.getOne(id)
       .then((ret) => {
-        this.theCoffee = { ...ret }
+        this.theCoffee = { ...ret, price: ret.small }
       });
   }
 

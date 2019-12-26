@@ -25,6 +25,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RewardModalPageModule } from '../pages/reward-modal/reward-modal.module';
 import { AccountPageModule } from '../pages/account/account.module';
 import { MenuServiceProvider } from '../providers/menu-service/menu-service';
+import { CartServiceProvider } from '../providers/cart-service/cart-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDwV3GU50fAudLNBdFhEiLtczx3PqNR1Ek",
@@ -60,7 +61,8 @@ export const firebaseConfig = {
     UserServiceProvider,
     RewardServiceProvider,
     FCM,
-    MenuServiceProvider
+    MenuServiceProvider,
+    CartServiceProvider
   ]
 })
 export class AppModule { }
