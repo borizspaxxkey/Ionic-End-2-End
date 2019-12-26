@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1089980205889",
+    "firebase_url": "https://wired-brain-e25f9.firebaseio.com",
+    "project_id": "wired-brain-e25f9",
+    "storage_bucket": "wired-brain-e25f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089980205889:android:31c46d73525454c4adefc0",
+        "android_client_info": {
+          "package_name": "io.jc.wiredbrain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089980205889-tugi44nprm1opscjmo0focvpqnd8b11p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkTppBmDptU30885NpmVBmkdcauf43jBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089980205889-tugi44nprm1opscjmo0focvpqnd8b11p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
