@@ -8,11 +8,18 @@
     </ion-toolbar>
 
     <ion-toolbar *ngIf='loggedIn' color='secondary'>
+
+        <button (click)='myPagePush(checkOut)' clear icon-left ion-button outline small>
+            <ion-icon name='cart'></ion-icon>
+            Checkout</button>
         <button clear icon-left ion-button small>
-          <ion-icon name='contact'></ion-icon>
-          {{loggedIn}} Logged in
+            <ion-icon name='contact'></ion-icon>
+            {{loggedIn}}
+            Logged in
         </button>
-        <button ion-button outline small (click)='signOff()'>Sign Out</button>
+        <button (click)='signOff()' clear icon-left ion-button outline small>
+            <ion-icon name='close-circle'></ion-icon>
+            Sign Out</button>
     </ion-toolbar>
 </ion-header>
 

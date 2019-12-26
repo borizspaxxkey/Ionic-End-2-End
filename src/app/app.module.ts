@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm';
+import { PayPal } from "@ionic-native/paypal/ngx";
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -15,6 +16,8 @@ import { MyApp } from './app.component';
 // Services
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { RewardServiceProvider } from '../providers/reward-service/reward-service';
+import { CartServiceProvider } from '../providers/cart-service/cart-service';
+import { MenuServiceProvider } from '../providers/menu-service/menu-service';
 
 // 3rd Party Libraries
 import { AngularFireModule } from 'angularfire2';
@@ -24,8 +27,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Modules
 import { RewardModalPageModule } from '../pages/reward-modal/reward-modal.module';
 import { AccountPageModule } from '../pages/account/account.module';
-import { MenuServiceProvider } from '../providers/menu-service/menu-service';
-import { CartServiceProvider } from '../providers/cart-service/cart-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDwV3GU50fAudLNBdFhEiLtczx3PqNR1Ek",
@@ -62,7 +63,9 @@ export const firebaseConfig = {
     RewardServiceProvider,
     FCM,
     MenuServiceProvider,
-    CartServiceProvider
+    CartServiceProvider,
+    PayPal
+
   ]
 })
 export class AppModule { }

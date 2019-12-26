@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
 
   logPage: any;
   loggedIn: any;
+  checkOut: any;
 
   constructor(public navCtrl: NavController,
     private afAuth: AngularFireAuth,
@@ -31,7 +32,7 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.logPage = 'LoginPage';
-
+    this.checkOut='CheckoutPage';
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
         this.loggedIn = this.userService.user = user.email;

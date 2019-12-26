@@ -138,5 +138,9 @@ export class UserServiceProvider {
         return err;
       });
   }
+
+  returnUser() {
+    return Promise.resolve(this.user);
+  }
 }
 
