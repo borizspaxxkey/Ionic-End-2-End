@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
+import { FCM } from '@ionic-native/fcm';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -23,6 +24,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Modules
 import { RewardModalPageModule } from '../pages/reward-modal/reward-modal.module';
 import { AccountPageModule } from '../pages/account/account.module';
+import { MenuServiceProvider } from '../providers/menu-service/menu-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDwV3GU50fAudLNBdFhEiLtczx3PqNR1Ek",
@@ -56,7 +58,9 @@ export const firebaseConfig = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserServiceProvider,
-    RewardServiceProvider
+    RewardServiceProvider,
+    FCM,
+    MenuServiceProvider
   ]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { FCM } from '@ionic-native/fcm';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -23,7 +24,8 @@ export class HomePage implements OnInit {
   constructor(public navCtrl: NavController,
     private afAuth: AngularFireAuth,
     private userService: UserServiceProvider,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    private fcm: FCM) {
 
   }
 
@@ -35,7 +37,9 @@ export class HomePage implements OnInit {
         this.loggedIn = this.userService.user = user.email;
       }
     });
-
+    if (window.hasOwnProperty('cordova')) {
+      this.initFcm();
+    }
   }
 
   signOff() {
@@ -50,5 +54,29 @@ export class HomePage implements OnInit {
           this.userService.displayAlert('Sorry', 'You must first register an account');
         }
       });
+  }
+
+  initFcm() {
+    this.fcm.getToken().then(token => {
+      console.log(token);
+      this.userService.tokens.push(token);
+    });
+
+    this.fcm.onTokenRefresh().subscribe(token => {
+      console.log(token)
+    });
+
+    this.fcm.onNotification().subscribe((data) => {
+      console.log('data', data);
+      if (data.wasTapped) {
+        console.log(data);
+        this.userService.displayAlert('Sent', data);
+        console.log('from display alert');
+      }
+      else {
+        console.log(data);
+        this.userService.displayAlert('Sent', data);
+      }
+    });
   }
 }

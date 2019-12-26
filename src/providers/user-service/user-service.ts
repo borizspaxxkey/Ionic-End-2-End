@@ -13,6 +13,7 @@ import { RewardServiceProvider } from '../reward-service/reward-service';
 export class UserServiceProvider {
 
   items: FirebaseListObservable<any>;
+  tokens: FirebaseListObservable<any>;
   success: boolean;
   user: string;
 
@@ -21,7 +22,8 @@ export class UserServiceProvider {
     private storage: Storage,
     private fbDb: AngularFireDatabase,
     private reward: RewardServiceProvider) {
-    this.items = fbDb.list('/users')
+    this.items = fbDb.list('/users');
+    this.tokens = fbDb.list('/tokens')
   }
 
   displayAlert(alertTitle, alertSub) {
