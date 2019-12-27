@@ -1,7 +1,13 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PayPal, PayPalPayment, PayPalConfiguration } from "@ionic-native/paypal";
+
+// Services
 import { CartServiceProvider } from '../../providers/cart-service/cart-service';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
+
+// Components
+import { HomePage } from "../home/home";
 
 @IonicPage()
 @Component({
@@ -23,6 +29,7 @@ export class CheckoutPage implements OnInit {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private ngZone: NgZone,
+    private payPal: PayPal,
     private cartService: CartServiceProvider, private userService: UserServiceProvider) {
   }
 
@@ -99,5 +106,50 @@ export class CheckoutPage implements OnInit {
   removeReward() {
     this.discountUsed = false;
     this.discount = '';
+  }
+
+  purchase() {
+    if (this.discountUsed) {
+      let tmpId = this.discount.rewardId;
+      let tmp = this.rewardsList.map(x => x.rewardId).indexOf(tmpId);
+      if (tmp > -1) {
+        this.rewardsList.splice(tmp, 1);
+      }
+      this.userService.storageControl('set', `${this.customer}-rewards`)
+        .then(results => console.log('Saved:', results));
+
+      this.payCart(this.discountTotal);
+      this.cartService.emptyCart();
+      this.userService.displayAlert('Thank You', `Your Order for ${this.discountTotal} has been paid`);
+      this.navCtrl.push(HomePage);
+    }
+    else {
+      this.payCart(this.orderTotal);
+      this.cartService.emptyCart();
+      this.userService.displayAlert('Thank You', `Your order for ${this.orderTotal} has been paid`);
+      this.navCtrl.push(HomePage);
+    }
+  }
+
+  payCart(amount) {
+    this.payPal.init({
+      PayPalEnvironmentProduction: 'production Environment key goes here',
+      PayPalEnvironmentSandbox: 'AU006ehVcGVBTZidPohVPf1pf_p2OJW5An9VTnvXdNZAvWcxnQKlI61DYjQpbnDpE4JoWPi3yzjp49tT'
+    }).then(() => {
+      this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+
+      })).then(() => {
+        let payment = new PayPalPayment(amount, 'USD', 'Description', 'sale');
+        this.payPal.renderSinglePaymentUI(payment).then((res) => {
+          console.log('Result from Paypal: ', res);
+        }, (err) => {
+          console.log('Error ', err)
+        });
+      }, (conf) => {
+        console.log('Configuration Error: ', conf)
+      });
+    }, (init) => {
+      console.log('Init Error: ', init)
+    });
   }
 }

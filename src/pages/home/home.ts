@@ -39,6 +39,7 @@ export class HomePage implements OnInit {
       }
     });
     if (window.hasOwnProperty('cordova')) {
+      console.log('yes it does')
       this.initFcm();
     }
   }

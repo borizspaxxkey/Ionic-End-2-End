@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm';
-import { PayPal } from "@ionic-native/paypal/ngx";
+import { PayPal } from "@ionic-native/paypal";
 
 // Pages
 import { HomePage } from '../pages/home/home';
